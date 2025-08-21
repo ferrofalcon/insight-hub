@@ -19,4 +19,7 @@ const productSchema = new Schema<IProduct>(
   { timestamps: true }
 )
 
+productSchema.index({ title: "text", description: "text" })
+productSchema.index({ sellerId: 1, createdAt: -1 })
+
 export default mongoose.model<IProduct>("Product", productSchema)
