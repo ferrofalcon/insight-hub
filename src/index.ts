@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import connectDB from "./config/db"
 import authRoutes from "./routes/authRoutes"
 import productRoutes from "./routes/productRoutes"
+import orderRoutes from "./routes/orderRoutes"
 import { auth, requireRole } from "./middleware/auth"
 
 dotenv.config()
@@ -16,6 +17,8 @@ app.get("/", (_, res) => res.send("API is running..."))
 app.use("/api/auth", authRoutes)
 
 app.use("/api/products", productRoutes)
+
+app.use("/api/orders", orderRoutes)
 
 app.get("/api/protected", auth, requireRole("seller"), (req, res) => {
   res.json({ message: "Hello Seller, this is protected data!" })

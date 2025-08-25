@@ -9,6 +9,7 @@ export interface IOrderItem {
 export interface IOrder extends Document {
   buyerId: mongoose.Types.ObjectId
   items: IOrderItem[]
+  totalAmount: number
   status: "pending" | "shipped" | "delivered"
 }
 
@@ -26,6 +27,7 @@ const orderSchema = new Schema<IOrder>(
         priceAtPurchase: { type: Number, required: true },
       },
     ],
+    totalAmount: { type: Number, required: true },
     status: {
       type: String,
       enum: ["pending", "shipped", "delivered"],
