@@ -6,6 +6,8 @@ export interface IProduct extends Document {
   price: number
   stock: number
   sellerId: mongoose.Types.ObjectId
+  ratingAvg: number
+  ratingCount: number
 }
 
 const productSchema = new Schema<IProduct>(
@@ -15,6 +17,8 @@ const productSchema = new Schema<IProduct>(
     price: { type: Number, required: true },
     stock: { type: Number, required: true },
     sellerId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+    ratingAvg: { type: Number, default: 0 },
+    ratingCount: { type: Number, default: 0 },
   },
   { timestamps: true }
 )

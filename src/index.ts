@@ -4,6 +4,7 @@ import connectDB from "./config/db"
 import authRoutes from "./routes/authRoutes"
 import productRoutes from "./routes/productRoutes"
 import orderRoutes from "./routes/orderRoutes"
+import reviewRoutes from "./routes/reviewRoutes"
 import { auth, requireRole } from "./middleware/auth"
 
 dotenv.config()
@@ -19,6 +20,8 @@ app.use("/api/auth", authRoutes)
 app.use("/api/products", productRoutes)
 
 app.use("/api/orders", orderRoutes)
+
+app.use("/api/reviews", reviewRoutes)
 
 app.get("/api/protected", auth, requireRole("seller"), (req, res) => {
   res.json({ message: "Hello Seller, this is protected data!" })
